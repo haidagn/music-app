@@ -1,0 +1,96 @@
+@mixin mq($breakpoint:md) {
+    @if ($breakpoint==edge) {
+        @supports (-ms-ime-align: auto) {
+            @content;
+        }
+    }
+
+    @if ($breakpoint==firefox) {
+        @-moz-document url-prefix() {
+            @content;
+        }
+    }
+
+    @else {
+        @media #{map-get($breakpoints, $breakpoint)} {
+            @content;
+        }
+    }
+}
+
+$breakpoint: 640px !default;
+$breakpoint-sm: 640px !default;
+$breakpoint-md: 767px !default;
+$breakpoint-lg: 990px !default;
+
+$breakpoints: (
+    'ip': 'screen and (max-width: 330px)',
+    'sm': 'screen and (max-width: 640px)',
+    'md': 'screen and (max-width: 767px)',
+    'lg': 'screen and (max-width: 990px)',
+    'xl': 'screen and (max-width: 1200px)',
+    'ie': 'screen and (-ms-high-contrast: active), (-ms-high-contrast: none)',
+    'sm-min': 'screen and (min-width: 641px)',
+    'md-min': 'screen and (min-width: 768px)',
+    'lg-min': 'screen and (min-width: 991px)',
+    'xl-min': 'screen and (min-width: 1201px)',
+    'xl-max': 'screen and (min-width: 1366px)',
+    'chrome': 'only screen and (-webkit-min-device-pixel-ratio: 0)',
+    'safari': 'screen and (min-color-index:0)',
+    'portrait': 'screen and (orientation:portrait)',
+    'landscape': 'screen and (orientation:landscape)',
+) !default;
+
+
+// h1 {
+//     font-size: 30px;
+
+//     @include mq(md) {
+//         font-size: 20px;
+//         //Màn dưới 768px
+//     }
+
+//     @include mq(sm) {
+//         font-size: 14px;
+//         //Màn dưới 649px
+//     }
+
+//     @include mq(ie) {
+//         font-size: 14px;
+//         //Trình duyệt IE
+//     }
+
+//     @include mq(edge) {
+//         font-size: 14px;
+//         //Trình duyệt Edge
+//     }
+
+//     @include mq(firefox) {
+//         font-size: 14px;
+//         //Trình duyệt Firefox
+//     }
+
+//     @include mq(landscape) {
+//         font-size: 14px;
+//         //Xoay ngang màn hình
+//     }
+
+//     @include mq(portrait) {
+//         font-size: 14px;
+//         //Xoay dọc màn hình
+//     }
+// }
+
+// // Ví dụ muốn code trong khoảng min-width:768px và max witdth 1200px viết như sau
+// @include mq(xl) {
+//     @include mq(md-min) {
+//         //CODE HERE
+//     }
+// }
+
+// //Ví Dụ code trình duyệt IE và màn dưới 768px
+// @include mq(ie) {
+//     @include mq() {
+//         // CODE HERE
+//     }
+// }

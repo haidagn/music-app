@@ -1,0 +1,20 @@
+body {
+    font-family: $primary-font;
+    font-size: 14px;
+    background-color: #e5eaf5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.app {
+    .title {
+        user-select: none;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 12px;
+        font-weight: 700;
+        color: rgb(26, 26, 26);
+    }
+}
